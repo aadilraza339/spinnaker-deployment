@@ -46,7 +46,8 @@ This container gets pushed to a container registry.
 The spinnaker listens for a new image in the container registry and triggers the delivery pipeline for deployment.
 The Spinnaker pipeline creates the necessary configurations (application configs, instances, scaling, etc.) and deploys the container in a target Kubernetes cluster after manual review.
 
-# For the installation, we will need a virtual machine with enough space to install Spinnaker.
+# For the installation.
+we will need a virtual machine with enough space to install Spinnaker.
 We will use an EC2 instance to install Spinnaker.
 
 - Open EC2 instance and clone this [repository](https://github.com/in4it/spinnaker-course)
