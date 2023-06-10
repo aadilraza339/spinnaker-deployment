@@ -45,3 +45,35 @@ The completed code triggers Jenkins to test and build a container.
 This container gets pushed to a container registry.
 The spinnaker listens for a new image in the container registry and triggers the delivery pipeline for deployment.
 The Spinnaker pipeline creates the necessary configurations (application configs, instances, scaling, etc.) and deploys the container in a target Kubernetes cluster after manual review.
+
+# For the installation, we will need a virtual machine with enough space to install Spinnaker.
+We will use an EC2 instance to install Spinnaker.
+
+- Open EC2 instance and clone this [repository](https://github.com/in4it/spinnaker-course)
+- `cd spinnaker-course/script`
+- Can we skip running `1-create-user.sh` script since, we already have the 'ubuntu' user
+- Run this file `./2-swapon.sh` for locate space.
+- Run this file `./3-install-halyard.sh` for halyard
+- Run this file for the authentication `4-configure-oauth.sh`
+  - First we need to update the credentials for that will create OAuth Apps in Githut and take `Client ID` and `Client secrets`
+  - # how to create OAuth Apps
+  - Open GitHub setting and select ` Developer settings` and then select `OAuth Apps`.
+  - Enter application name ex `Spinnaker-eks`
+  - Fill `Homepage URL` with `http://<IP>/login` replace IP with your actual EC2 instance IP
+  - Fill `Authorization callback URL` with `http://<IP>/login` replace IP with your actual EC2 instance IP
+  - Open `4-configure-oauth.sh` file and update it
+    ```
+    CLIENT_ID=myClientId
+    CLIENT_SECRET=myClientSecret
+    ```
+  - Update `PROVIDER=google|github|azure` to `PROVIDER=github` 
+  - Now run it `./4-configure-oauth.sh`
+  - After success it follow below instructions
+
+- Now run `./5-deploy-spinnaker.sh` for install Spinnaker
+
+Here I am getting error, I am not able to resovle it.
+![image](https://github.com/aadilraza339/spinnaker-deployment/assets/47937273/7fdd4e4f-bfb5-4969-95ef-b519002db252)
+
+
+
